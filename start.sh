@@ -1,7 +1,7 @@
 #!/bin/sh
 set -m
 
-mongodb_cmd="mongod"
+mongodb_cmd="mongod --bind_ip 0.0.0.0"
 cmd="$mongodb_cmd"
 
 if [ "$AUTH" == "yes" ]; then
