@@ -1,8 +1,8 @@
-# docker-mongo-auth
-A Docker Image for MongoDB which makes it easy to create an Admin, a Database and a Database User when the container is first launched.
+# Mongo image with enabled Auth
+A docker image for Mongo where the authentication can be easily configured.
 
 # Customization
-There are a number of environment variables which you can specify to customize the username and passwords of your users. 
+Here I describe the environment variables that you can use
 
 - With Dockerfile
   ```
@@ -10,26 +10,26 @@ There are a number of environment variables which you can specify to customize t
   # These environment variables can also be specified through command line or docker-compose configuration
   # ENV AUTH yes
 
-  # ENV MONGODB_ADMIN_USER root
-  # ENV MONGODB_ADMIN_PASS password
+  # ENV ADMIN_USER root
+  # ENV ADMIN_PASS password
 
-  # ENV MONGODB_APPLICATION_DATABASE your_db
-  # ENV MONGODB_APPLICATION_USER user
-  # ENV MONGODB_APPLICATION_PASS password
+  # ENV APPLICATION_DATABASE your_db
+  # ENV APPLICATION_USER user
+  # ENV APPLICATION_PASS password
   ```
   
 - With docker-compose.yml
   ```
   services:
     db:
-      image: aashreys/mongo-auth:latest
+      image: vepo/mongo
       environment:
         - AUTH=yes
-        - MONGODB_ADMIN_USER=admin
-        - MONGODB_ADMIN_PASS=admin123
-        - MONGODB_APPLICATION_DATABASE=sample
-        - MONGODB_APPLICATION_USER=aashrey
-        - MONGODB_APPLICATION_PASS=admin123
+        - ADMIN_USER=admin
+        - ADMIN_PASS=admin123
+        - APPLICATION_DATABASE=sample
+        - APPLICATION_USER=aashrey
+        - APPLICATION_PASS=admin123
       ports:
         - "27017:27017"
   // more configuration
@@ -39,12 +39,12 @@ There are a number of environment variables which you can specify to customize t
   ```
   docker run -it \
     -e AUTH=yes \
-    -e MONGODB_ADMIN_USER=admin \
-    -e MONGODB_ADMIN_PASS=adminpass \
-    -e MONGODB_APPLICATION_DATABASE=mytestdatabase \
-    -e MONGODB_APPLICATION_USER=testuser \
-    -e MONGODB_APPLICATION_PASS=testpass \
-    -p 27017:27017 aashreys/mongo-auth:latest
+    -e ADMIN_USER=admin \
+    -e ADMIN_PASS=adminpass \
+    -e APPLICATION_DATABASE=mytestdatabase \
+    -e APPLICATION_USER=testuser \
+    -e APPLICATION_PASS=testpass \
+    -p 27017:27017 vepo/mongo
   ```
 
 This image is based on https://github.com/aashreys/docker-mongo-auth
