@@ -21,9 +21,6 @@ done
 echo "Creating ADMIN user for Mongo..."
 
 mongo admin << EOF
-db.system.users.remove({});
-db.system.version.remove({});
-db.system.version.insert({ "_id" : "authSchema", "currentVersion" : 3 });
 db.createUser({user: '$ADMIN_USER', pwd: '$ADMIN_PASS', roles:[{role:'root',db:'admin'}]});
 EOF
 
