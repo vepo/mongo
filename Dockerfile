@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:edge
 
 MAINTAINER <Victor Osório> victor.perticarrari@gmail.com
 
