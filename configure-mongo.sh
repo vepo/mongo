@@ -30,7 +30,7 @@ if [ "$APPLICATION_DATABASE" != "admin" ]; then
     echo "=> Creating a ${APPLICATION_DATABASE} database user with a password in MongoDB"
     mongo admin -u $ADMIN_USER -p $ADMIN_PASS << EOF
 use $APPLICATION_DATABASE
-db.createUser({user: '$APPLICATION_USER', pwd: '$APPLICATION_PASS', roles:[{role:'dbAdmin', db:'$APPLICATION_DATABASE'}, {role:'readAnyDatabase', db:'$APPLICATION_DATABASE'}, {role:'readWriteAnyDatabase', db:'$APPLICATION_DATABASE'}]})
+db.createUser({user: '$APPLICATION_USER', pwd: '$APPLICATION_PASS', roles:[{role:'dbOwner', db:'$APPLICATION_DATABASE'}]})
 EOF
 fi
 
